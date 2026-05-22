@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn German</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🇩🇪 Learn German</h1>
+      <nav>
+        <button class="nav-btn active" data-view="flashcards">Flashcards</button>
+        <button class="nav-btn" data-view="quiz">Quiz</button>
+        <button class="nav-btn" data-view="progress">Progress</button>
+      </nav>
+    </header>
+
+    <div id="flashcards-view" class="view active-view">
+      <div class="category-bar">
+        <select id="category-select">
+          <option value="greetings">Greetings</option>
+          <option value="numbers">Numbers</option>
+          <option value="colors">Colors</option>
+          <option value="food">Food & Drink</option>
+          <option value="places">Places</option>
+          <option value="verbs">Verbs</option>
+          <option value="phrases">Common Phrases</option>
+        </select>
+        <div class="card-counter"><span id="card-index">1</span> / <span id="card-total">0</span></div>
+      </div>
+      <div class="card-container">
+        <div id="flashcard" class="card" onclick="flipCard()">
+          <div class="card-inner">
+            <div class="card-front">
+              <p class="card-word" id="card-front-word">Hallo</p>
+              <p class="card-hint">Tap to flip</p>
+            </div>
+            <div class="card-back">
+              <p class="card-word" id="card-back-word">Hello</p>
+              <p class="card-example" id="card-example"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-controls">
+        <button id="prev-btn" onclick="prevCard()">← Previous</button>
+        <button id="shuffle-btn" onclick="shuffleCards()">🔀 Shuffle</button>
+        <button id="next-btn" onclick="nextCard()">Next →</button>
+      </div>
+    </div>
+
+    <div id="quiz-view" class="view">
+      <div class="quiz-header">
+        <h2>Quiz</h2>
+        <div class="quiz-stats">
+          <span>Score: <strong id="quiz-score">0</strong></span>
+          <span>Q: <strong id="quiz-count">0</strong> / <span id="quiz-total">0</span></span>
+        </div>
+      </div>
+      <div id="quiz-area">
+        <p class="quiz-question" id="quiz-question">Select a category and start the quiz!</p>
+        <div id="quiz-options" class="quiz-options"></div>
+        <div id="quiz-result" class="quiz-result"></div>
+        <button id="quiz-next-btn" class="hidden" onclick="nextQuizQuestion()">Next →</button>
+      </div>
+      <div class="quiz-controls">
+        <select id="quiz-category-select">
+          <option value="greetings">Greetings</option>
+          <option value="numbers">Numbers</option>
+          <option value="colors">Colors</option>
+          <option value="food">Food & Drink</option>
+          <option value="places">Places</option>
+          <option value="verbs">Verbs</option>
+          <option value="phrases">Common Phrases</option>
+          <option value="all">All Categories</option>
+        </select>
+        <button id="quiz-start-btn" onclick="startQuiz()">Start Quiz</button>
+      </div>
+    </div>
+
+    <div id="progress-view" class="view">
+      <h2>Your Progress</h2>
+      <div id="progress-stats" class="progress-stats"></div>
+      <div id="progress-bars" class="progress-bars"></div>
+      <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
