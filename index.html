@@ -14,6 +14,7 @@
         <button class="nav-btn active" data-view="flashcards">Flashcards</button>
         <button class="nav-btn" data-view="quiz">Quiz</button>
         <button class="nav-btn" data-view="progress">Progress</button>
+        <button class="nav-btn" data-view="chat">Chat</button>
       </nav>
     </header>
 
@@ -36,16 +37,20 @@
             <div class="card-front">
               <p class="card-word" id="card-front-word">Hallo</p>
               <p class="card-hint">Tap to flip</p>
+              <button class="speak-btn" onclick="event.stopPropagation(); speak('card-front-word')" title="Listen">🔊</button>
             </div>
             <div class="card-back">
               <p class="card-word" id="card-back-word">Hello</p>
               <p class="card-example" id="card-example"></p>
+              <button class="speak-btn" onclick="event.stopPropagation(); speak('card-front-word')" title="Listen">🔊</button>
             </div>
           </div>
         </div>
       </div>
+      <div id="speak-result" class="speak-result hidden"></div>
       <div class="card-controls">
         <button id="prev-btn" onclick="prevCard()">← Previous</button>
+        <button id="record-btn" onclick="startRecording()" title="Practice speaking">🎤 Speak</button>
         <button id="shuffle-btn" onclick="shuffleCards()">🔀 Shuffle</button>
         <button id="next-btn" onclick="nextCard()">Next →</button>
       </div>
@@ -60,7 +65,9 @@
         </div>
       </div>
       <div id="quiz-area">
-        <p class="quiz-question" id="quiz-question">Select a category and start the quiz!</p>
+        <p class="quiz-question" id="quiz-question">Select a category and start the quiz!
+          <button class="speak-btn quiz-speak" onclick="speak('quiz-question')" title="Listen">🔊</button>
+        </p>
         <div id="quiz-options" class="quiz-options"></div>
         <div id="quiz-result" class="quiz-result"></div>
         <button id="quiz-next-btn" class="hidden" onclick="nextQuizQuestion()">Next →</button>
@@ -85,6 +92,20 @@
       <div id="progress-stats" class="progress-stats"></div>
       <div id="progress-bars" class="progress-bars"></div>
       <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
+    </div>
+
+    <div id="chat-view" class="view">
+      <h2>German Tutor Chat</h2>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-msg bot">
+          <span class="msg-sender">Tutor</span>
+          <span class="msg-text">Hi! I'm your German tutor. I can:<br>• Translate words (e.g. "What does Hallo mean?")<br>• List categories ("Show me all colors")<br>• Correct your German ("correct: Ich habe ein Hund")<br>• Analyze your writing ("check: Ich liebe dich")</span>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about a word..." autocomplete="off">
+        <button id="chat-send-btn" onclick="sendChat()">Send</button>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
